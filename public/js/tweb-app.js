@@ -1,4 +1,8 @@
-var app = angular.module("twebApp", ['chart.js']);
+var app = angular.module("twebApp", ['chart.js', 'btford.socket-io']);
+
+app.factory("socket", function(socketFactory) {
+    return socketFactory();
+});
 
 app.controller("TextController", ["$scope", function($scope) {
     $scope.text = "text";
