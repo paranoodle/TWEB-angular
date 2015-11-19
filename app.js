@@ -12,6 +12,19 @@ var users = require('./routes/user');
 
 var app = express();
 
+// MY CODE
+var http = require('http').createServer(app);
+socketio = require('socket.io')(http);
+
+socketio.on('connection', function(socket) {
+    console.log("Connection");
+    socket.emit('hi', {hello: 'world'});
+    socket.on('disconnect', function() {
+       console.log("Disconnection"); 
+    });
+});
+// END OF MY CODE
+
 var env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
@@ -68,4 +81,10 @@ app.use(function(err, req, res, next) {
 });
 
 
-module.exports = app;
+//module.exports = app;
+
+app.set('port', process.env.PORT || 3000);
+
+var server = http.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + server.address().port);
+});

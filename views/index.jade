@@ -17,7 +17,10 @@ html(lang='en', ng-app="twebApp")
         input(ng-model="newtext")
         button(ng-click="on_text(newtext)") Update
         
-        p Echo? {{text}}
+        p Angular? {{text}}
+        
+    controller(ng-controller="SocketController")
+        p Socket? {{stext}}
     
     controller(ng-controller="ChartController")
       canvas(id="test", class="chart chart-doughnut", chart-data="data", chart-labels="labels")
